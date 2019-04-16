@@ -1,5 +1,5 @@
 // It uses data_handler.js to visualize elements
-import { dataHandler } from "./data_handler.js";
+import {dataHandler} from "./data_handler.js";
 
 export let dom = {
     _appendToElement: function (elementToExtend, textToAppend, prepend = false) {
@@ -22,7 +22,7 @@ export let dom = {
     },
     loadBoards: function () {
         // retrieves boards and makes showBoards called
-        dataHandler.getBoards(function(boards){
+        dataHandler.getBoards(function (boards) {
             dom.showBoards(boards);
         });
     },
@@ -35,9 +35,20 @@ export let dom = {
         boards.forEach(function (board) {
             //the content should be appended to the content+board id div
             console.log(board);
-            dom._appendToElement(boardContainer, '<button id="'+board.id+'" class="collapsible">'+board.title+'</button>\n' +
-                '<div class="content'+board.id+'">')
-        });
+            dom._appendToElement(boardContainer, '<button id="' + board.id + '" class="collapsible">' + board.title + '</button>\n' +
+                '<div class="content' + board.id + '">');
+            let theBoard = document.getElementById(''+board.id+'');
+            theBoard.addEventListener('click',  function () {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+
+        })
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
