@@ -54,9 +54,7 @@ export let dom = {
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
         dataHandler.getCardsByBoardId(boardId, function (cards) {
-            cards.forEach(function (cards) {
-                dom.showCards(cards)
-            })
+            dom.showCards(cards)
         })
     },
     showCards: function (cards) {
