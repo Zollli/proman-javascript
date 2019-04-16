@@ -46,6 +46,7 @@ export let dom = {
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
+                dom.loadCards(board.id)
             });
 
         })
@@ -53,14 +54,17 @@ export let dom = {
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
         dataHandler.getCardsByBoardId(boardId, function (cards) {
-            cards.forEach(function (card) {
-                
+            cards.forEach(function (cards) {
+                dom.showCards(cards)
             })
         })
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
+        cards.forEach(function (card) {
+            console.log(card)
+        })
     },
     // here comes more features
 };
