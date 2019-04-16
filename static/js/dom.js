@@ -30,21 +30,14 @@ export let dom = {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
 
-        let boardList = '';
 
-        for(let board of boards){
-            boardList += `
-                <li>${board.title}</li>
-            `;
-        }
-
-        const outerHtml = `
-            <ul class="board-container">
-                ${boardList}
-            </ul>
-        `;
-
-        this._appendToElement(document.querySelector('#boards'), outerHtml);
+        let boardContainer = document.querySelector('#boards');
+        boards.forEach(function (board) {
+            //the content should be appended to the content+board id div
+            console.log(board);
+            dom._appendToElement(boardContainer, '<button id="'+board.id+'" class="collapsible">'+board.title+'</button>\n' +
+                '<div class="content'+board.id+'">')
+        });
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
