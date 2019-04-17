@@ -35,10 +35,10 @@ export let dom = {
         boards.forEach(function (board) {
             //the content should be appended to the content+board id div
             console.log(board);
-            dom._appendToElement(boardContainer, '<button id="' + board.id + '" class="collapsible">' + board.title + '</button>\n' +
-                '<div class="content' + board.id + '">');
-            let theBoard = document.getElementById(''+board.id+'');
-            theBoard.addEventListener('click',  function () {
+            dom._appendToElement(boardContainer, '<div class="board' + board.id + '"><button id="' + board.id + '" class="collapsible">' + board.title + '</button>\n' +
+                '<div class="content' + board.id + '"></div>');
+            let theBoard = document.getElementById('' + board.id + '');
+            theBoard.addEventListener('click', function () {
                 this.classList.toggle("active");
                 let content = this.nextElementSibling;
                 if (content.style.maxHeight) {
@@ -54,17 +54,25 @@ export let dom = {
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
         dataHandler.getCardsByBoardId(boardId, function (cards) {
-            cards.forEach(function (cards) {
-                dom.showCards(cards)
-            })
+            dom.showCards(cards)
         })
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
-        cards.forEach(function (card) {
-            console.log(card)
-        })
+        let columns = ['new', 'in progress', 'testing', 'done'];
+        columns.forEach(function (column) {
+            let columnDiv = document.createElement('div');
+            columnDiv.setAttribute('class', 'column');
+            columnDiv.value = column;
+            cards.forEach(function (card) {
+            let cardDiv = document.createElement('div');
+            cardDiv.setAttribute('class', 'card');
+            let cardText = document.createTextNode(carn);
+            cardDiv.appendChild(cardText)
+            });
+        });
+
     },
     // here comes more features
 };
