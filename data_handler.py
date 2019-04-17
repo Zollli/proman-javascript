@@ -16,7 +16,8 @@ def get_boards():
     Gather all boards
     :return:
     """
-    return persistence.get_boards(force=True)
+    persistence.get_cards_sql(1)
+    return persistence.get_boards()
 
 
 def get_cards_for_board(board_id):
