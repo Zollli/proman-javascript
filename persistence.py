@@ -71,20 +71,20 @@ def get_boards(cursor):
 
 
 @connection.connection_handler
-def add_board(cursor,user_id,title):
+def add_board(cursor, user_id, title):
     cursor.execute("""
-    INSERT INTO boards(%(user_id)s,%(title)s)
+    INSERT INTO boards(user_id, title)
+     VALUES (%(user_id)s,%(title)s)
     """,
-    {'user_id':user_id,'title':title})
+                   {'user_id': user_id, 'title': title})
 
 
 @connection.connection_handler
-def get_cards_sql(cursor,board_id):
+def get_cards_sql(cursor, board_id):
     cursor.execute("""
     SELECT title FROM cards
     WHERE board_id = %(board_id)s
     """,
-                   {'board_id':board_id})
+                   {'board_id': board_id})
     result = cursor.fetchall()
     print(result)
-
