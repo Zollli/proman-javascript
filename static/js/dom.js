@@ -39,6 +39,10 @@ export let dom = {
                 '<div class="content' + board.id + '">');
             let theBoard = document.getElementById(' '+board.id+'');
             theBoard.addEventListener('click',  function () {
+            dom._appendToElement(boardContainer, '<div class="board' + board.id + '"><button id="' + board.id + '" class="collapsible">' + board.title + '</button>\n' +
+                '<div class="content' + board.id + '"></div>');
+            let theBoard = document.getElementById('' + board.id + '');
+            theBoard.addEventListener('click', function () {
                 this.classList.toggle("active");
                 let content = this.nextElementSibling;
                 if (content.style.maxHeight) {
@@ -46,6 +50,7 @@ export let dom = {
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
+                dom.loadCards(board.id)
             });
 
         })
@@ -53,16 +58,25 @@ export let dom = {
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
         dataHandler.getCardsByBoardId(boardId, function (cards) {
-            cards.forEach(function (card) {
-                
-            })
+            dom.showCards(cards)
         })
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
+        let columns = ['new', 'in progress', 'testing', 'done'];
+        columns.forEach(function (column) {
+            let columnDiv = document.createElement('div');
+            columnDiv.setAttribute('class', 'column');
+            columnDiv.value = column;
+            cards.forEach(function (card) {
+            let cardDiv = document.createElement('div');
+            cardDiv.setAttribute('class', 'card');
+            let cardText = document.createTextNode(card);
+            cardDiv.appendChild(cardText)
+            });
+        });
+
     },
     // here comes more features
 };
-
-

@@ -1,4 +1,5 @@
 import csv
+import connection
 
 STATUSES_FILE = './data/statuses.csv'
 BOARDS_FILE = './data/boards.csv'
@@ -49,3 +50,41 @@ def get_boards(force=False):
 
 def get_cards(force=False):
     return _get_data('cards', CARDS_FILE, force)
+
+
+@connection.connection_handler
+def get_status(cursor):
+    cursor.execute("""
+    SELECT * FROM statuses
+    """)
+    result = cursor.fetchall()
+    return result
+
+
+@connection.connection_handler
+def get_boards(cursor):
+    cursor.execute("""
+    SELECT * FROM boards
+    """)
+    result = cursor.fetchall()
+    return result
+
+
+@connection.connection_handler
+def add_board(cursor, user_id, title):
+    cursor.execute("""
+    INSERT INTO boards(user_id, title)
+     VALUES (%(user_id)s,%(title)s)
+    """,
+                   {'user_id': user_id, 'title': title})
+
+
+@connection.connection_handler
+def get_cards_sql(cursor, board_id):
+    cursor.execute("""
+    SELECT title FROM cards
+    WHERE board_id = %(board_id)s
+    """,
+                   {'board_id': board_id})
+    result = cursor.fetchall()
+    print(result)
