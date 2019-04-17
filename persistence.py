@@ -87,4 +87,4 @@ def get_cards_sql(cursor, board_id):
     """,
                    {'board_id': board_id})
     result = cursor.fetchall()
-    print(result)
+    return result

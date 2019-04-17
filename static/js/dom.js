@@ -60,19 +60,20 @@ export let dom = {
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
+        console.log(cards[0].title);
+        let columnList = [];
         let columns = ['new', 'in progress', 'testing', 'done'];
-        columns.forEach(function (column) {
-            let columnDiv = document.createElement('div');
-            columnDiv.setAttribute('class', 'column');
-            columnDiv.value = column;
-            cards.forEach(function (card) {
-            let cardDiv = document.createElement('div');
-            cardDiv.setAttribute('class', 'card');
-            let cardText = document.createTextNode(card);
-            cardDiv.appendChild(cardText)
-            });
-        });
+        for (let i = 0; columns.length; i++) {
+            let columnElem = document.createElement('div');
+            columnElem.setAttribute('id', i);
+            columnList.push(columnElem)
+            let boardColumn = document.createElement('div');
+            boardColumn.setAttribute('class', 'innerColumn');
+            columnElem.appendChild(boardColumn)
+        }
 
-    },
+        columns.forEach(function (column) {
+        })
+    }
     // here comes more features
 };
