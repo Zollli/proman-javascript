@@ -55,17 +55,18 @@ export let dom = {
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
         dataHandler.getCardsByBoardId(boardId, function (cards) {
-            dom.showCards(cards)
+            dom.showCards(cards);
+
         })
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
         console.log(cards);
-        let dragulaElems = [];
+        var dragulaElems = [];
         let columns = ['new', 'in progress', 'testing', 'done'];
         for (let i = 0; columns.length; i++) {
-            let columnElem = document.createElement('div');
+            var columnElem = document.createElement('div');
             columnElem.setAttribute('id', i);
             dragulaElems.push(columnElem);
             var Card = dataHandler.appendWithTag('div',null, columnElem, i.toString(), "innerColumn");
@@ -75,12 +76,14 @@ export let dom = {
         columns.forEach(function (column) {
             let cardHeader = dataHandler.appendWithTag('h4', column, Card, column, "cardTitle");
             let dragulaUl = dataHandler.appendWithTag("ul", null, Card, column, "dragulaUL");
-
-
-
-
-
-        })
+            dragulaElems.push(dragulaUl);
+            cards.forEach(function(note){
+                dataHandler.appendWithTag("li", note['title'], dragulaUl, note['title'], null);
+            });
+        });
+        let motherBoard = document.querySelector(".content1");
+            motherBoard.appendChild(columnElem);
+            dragula(dragulaElems);
     }
     // here comes more features
 };
