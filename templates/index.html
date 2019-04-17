@@ -16,15 +16,9 @@
 
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
         <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
-        <div class="add-board">
-            <button type="button" class="btn btn-primary">Add Board</button>
-        </div>
+
     </head>
     <body>
-
-        <div id="boards">Boards are loading...</div>
-
-
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -99,7 +93,9 @@
   </div>
 </div>
 
-
+        <div class="add-board">
+            <button type="button" class="btn btn-primary">Add Board</button>
+        </div>
 
         <h1>ProMan</h1>
         <div id="boards"></div>
