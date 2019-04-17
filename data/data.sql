@@ -26,7 +26,17 @@ create table cards(
 	board_id integer REFERENCES "boards" ON DELETE CASCADE ON UPDATE CASCADE,
 	title varchar,
 	status_id integer,
+	order integer,
 	PRIMARY KEY (id),
 	FOREIGN KEY(board_id) REFERENCES "boards"(id),
 	FOREIGN KEY(status_id) REFERENCES "statuses"(id)
 );
+insert into statuses(title) values ('new');
+insert into statuses(title) values ('in progress');
+insert into statuses(title) values ('testing');
+insert into statuses(title) values ('done');
+
+insert into users(name, hashed_password) VALUES('proman','proman');
+insert into boards(user_id, title) VALUES (1,'Sprint Plan');
+insert into cards(board_id, title, status_id) VALUES (1,'Create');
+
