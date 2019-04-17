@@ -19,6 +19,7 @@ export let dom = {
     },
     init: function () {
         // This function should run once, when the page is loaded.
+
     },
     loadBoards: function () {
         // retrieves boards and makes showBoards called
@@ -60,19 +61,25 @@ export let dom = {
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
-        console.log(cards[0].title);
-        let columnList = [];
+        console.log(cards);
+        let dragulaElems = [];
         let columns = ['new', 'in progress', 'testing', 'done'];
         for (let i = 0; columns.length; i++) {
             let columnElem = document.createElement('div');
             columnElem.setAttribute('id', i);
-            columnList.push(columnElem)
-            let boardColumn = document.createElement('div');
-            boardColumn.setAttribute('class', 'innerColumn');
-            columnElem.appendChild(boardColumn)
+            dragulaElems.push(columnElem);
+            var Card = dataHandler.appendWithTag('div',null, columnElem, i.toString(), "innerColumn");
+
         }
 
         columns.forEach(function (column) {
+            let cardHeader = dataHandler.appendWithTag('h4', column, Card, column, "cardTitle");
+            let dragulaUl = dataHandler.appendWithTag("ul", null, Card, column, "dragulaUL");
+
+
+
+
+
         })
     }
     // here comes more features
