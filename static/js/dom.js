@@ -68,7 +68,7 @@ export let dom = {
             cards.forEach(function (card) {
             let cardDiv = document.createElement('div');
             cardDiv.setAttribute('class', 'card');
-            let cardText = document.createTextNode(carn);
+            let cardText = document.createTextNode(card);
             cardDiv.appendChild(cardText)
             });
         });
