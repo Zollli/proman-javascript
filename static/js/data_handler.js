@@ -49,7 +49,29 @@ export let dataHandler = {
     },
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
+
+        // add new board
+        const addBoard = document.getElementsByClassName('add-board');
+        addBoard.addEventListener('click', function () {
+
+        // create elements
+        var ids = Array.prototype.slice.call(document.querySelectorAll('collapsible'));
+        var newButton = document.createElement('button ');
+        var newDiv = document.createElement('div') ;
+
+        // add classes and ID-s
+
+        newButton.classList.add('collapsible');
+        newDiv.classList.add('content');
+
+
+        // append elements
+        newBoard.appendChild(newButton);
+        newBoard.appendChild(newDiv);
+        })
+
     },
+
     createNewCard: function (cardTitle, boardId, statusId, callback) {
         // creates new card, saves it and calls the callback function with its data
     }

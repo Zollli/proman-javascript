@@ -37,7 +37,7 @@ export let dom = {
             console.log(board);
             dom._appendToElement(boardContainer, '<button id="' + board.id + '" class="collapsible">' + board.title + '</button>\n' +
                 '<div class="content' + board.id + '">');
-            let theBoard = document.getElementById(''+board.id+'');
+            let theBoard = document.getElementById(' '+board.id+'');
             theBoard.addEventListener('click',  function () {
                 this.classList.toggle("active");
                 let content = this.nextElementSibling;
@@ -64,3 +64,5 @@ export let dom = {
     },
     // here comes more features
 };
+
+
