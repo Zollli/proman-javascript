@@ -85,6 +85,6 @@ def get_cards_sql(cursor,board_id):
     WHERE board_id = %(board_id)s
     """,
                    {'board_id':board_id})
-    result = cursor.fetchone()
+    result = cursor.fetchall()
     print(result)
 
