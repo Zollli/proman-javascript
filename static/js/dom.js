@@ -65,25 +65,31 @@ export let dom = {
         console.log(cards);
         var dragulaElems = [];
         let columns = ['new', 'in progress', 'testing', 'done'];
-        for (let i = 0; columns.length; i++) {
-            var columnElem = document.createElement('div');
+        let cardDivs = [];
+        for (let i = 0; i < columns.length; i++) {
+            let columnElem = document.createElement('div');
             columnElem.setAttribute('id', i);
             dragulaElems.push(columnElem);
-            var Card = dataHandler.appendWithTag('div',null, columnElem, i.toString(), "innerColumn");
-
-        }
-
-        columns.forEach(function (column) {
+            let Card = dataHandler.appendWithTag('div', null, columnElem, i.toString(), "innerColumn");
             let cardHeader = dataHandler.appendWithTag('h4', column, Card, column, "cardTitle");
             let dragulaUl = dataHandler.appendWithTag("ul", null, Card, column, "dragulaUL");
             dragulaElems.push(dragulaUl);
-            cards.forEach(function(note){
+            cards.forEach(function (note) {
                 dataHandler.appendWithTag("li", note['title'], dragulaUl, note['title'], null);
             });
-        });
+        }
         let motherBoard = document.querySelector(".content1");
-            motherBoard.appendChild(columnElem);
-            dragula(dragulaElems);
+        motherBoard.appendChild(columnElem);
+        dragula(dragulaElems);
+        // columns.forEach(function (column) {
+        //     let cardHeader = dataHandler.appendWithTag('h4', column, Card, column, "cardTitle");
+        //     let dragulaUl = dataHandler.appendWithTag("ul", null, Card, column, "dragulaUL");
+        //     dragulaElems.push(dragulaUl);
+        //     cards.forEach(function (note) {
+        //         dataHandler.appendWithTag("li", note['title'], dragulaUl, note['title'], null);
+        //     });
+        // });
+
     }
     // here comes more features
 };
