@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, jsonify, url_for, request
 from util import json_response
 
 import data_handler
@@ -32,6 +32,16 @@ def get_cards_for_board(board_id: int):
     """
     return data_handler.get_cards_for_board(board_id)
 
+
+@app.route("/register", methods=['POST', 'GET'])
+def auth_resp():
+    data_json = request.get_json()
+    print(data_json)
+    data_username = data_json['username']
+    data_password = data_json['password']
+    print("username: ", data_username, " password: ", data_password)
+    final_data = {'rdy_username': data_username, 'hashed_pw': data_password}
+    return jsonify(final_data)
 
 def main():
     app.run(debug=True)
