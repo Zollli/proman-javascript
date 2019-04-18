@@ -46,7 +46,7 @@ def auth_resp():
 def main():
     app.run(debug=True)
 
-    # Serving the favicon
+
     with app.app_context():
         app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon/favicon.ico'))
 
