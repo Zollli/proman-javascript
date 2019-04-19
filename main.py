@@ -47,19 +47,26 @@ def auth_resp():
     return data_username
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
+@json_response
 def login_handler():
     the_json = request.get_json()
     print(the_json)
     username = the_json['username']
     password = the_json['password']
+    hashed_new_password = bcrypt.generate_password_hash(password)
     data_form_database = data_handler.check_user(username)
-    if data_form_database is not None:
-        password_valid = bcrypt.check_password_hash(data_form_database['hashed_password'],password)
-        if password_valid is True:
+    print(hashed_new_password, username, data_form_database[0]['hashed_password'].encode('utf-8'))
+    print(data_form_database[0]['hashed_password'].decode('utf-8') == hashed_new_password)
+    if data_form_database[0]['name'] is not None:
+        if data_form_database[0]['hashed_password'].decode('utf-8') == hashed_new_password:
             return username
         else:
-            return
+            error = 'invalid password'
+            return error
+    else:
+        error = 'invalid username'
+        return error
 
 
 def main():

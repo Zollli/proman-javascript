@@ -45,9 +45,13 @@ function register_save() {
     auth.postData(`/register`, data_from_auth)
         .then(data => console.log(data)) // JSON-string from `response.json()` call
         .then(function (data) {
-            sessionStorage.setItem("username", register_name);
-            document.querySelector('#registerModal').setAttribute('hidden', 'true');
-            auth.setLoginName(register_name);
+            if (data.key === 'error') {
+                $('register_modal').modal('toggle');
+            } else {
+                sessionStorage.setItem("username", register_name);
+                $('register_modal').modal('toggle');
+                auth.setLoginName(register_name);
+            }
         })
 }
 
@@ -56,13 +60,15 @@ function loginHandler() {
     let password = document.querySelector("#loginPassword").value;
     let data = {username, password};
     console.log(data);
-    postData('/login', data)
+    auth.postData('/login', data)
         .then(data => console.log(data))
         .then(function (username) {
-            sessionStorage.setItem("username", username);
-            $(function () {
-                
-            })$('login_modal').modal('toggle');
-            auth.setLoginName(username);
+            if (username.key === 'error') {
+                $('login_modal').modal('toggle');
+            } else {
+                sessionStorage.setItem("username", username);
+                $('login_modal').modal('toggle');
+                auth.setLoginName(username);
+            }
         })
 }

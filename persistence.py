@@ -99,6 +99,6 @@ def register_user(cursor, user_name, password):
 @connection.connection_handler
 def get_user(cursor, username):
     cursor.execute('''
-    SELECT name, hashed_password FROM users WHERE name = (%s)
-    ''', {username})
+    SELECT name, hashed_password FROM users WHERE name = %(name)s
+    ''', {'name': username})
     return cursor.fetchall()
