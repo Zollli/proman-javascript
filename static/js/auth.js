@@ -1,29 +1,14 @@
 export let auth = {
     // test
-    _init: function(){
-        //document.getElementById("login").addEventListener("click", auth.loadDoc);
+    _init: function () {
+        document.querySelector("#login_save_button").addEventListener("click", loginHandler);
         //document.getElementById("login_save_button").addEventListener("click", auth.login_save);
-        document.getElementById('save_register').addEventListener("click", register_save);
-    },
-    login_save : function(){
-        let username = document.getElementById("loginName").value;
-        sessionStorage.setItem("username", username);
-        auth.setLoginName(username);
-
+        document.querySelector('#save_register').addEventListener("click", register_save);
     },
 
-    loadDoc: function () {
-      let request = new XMLHttpRequest();
-
-      request.open("GET", url, true);
-      request.send();
-
-    },
-
-
-    setLoginName : function (username) {
-       let usernameField = document.getElementById("username");
-       usernameField.innerText = "Logged in as " + username;
+    setLoginName: function (username) {
+        let usernameField = document.querySelector("#username");
+        usernameField.setAttribute('value', 'logged in as:' + username)
     },
 
     /*
@@ -33,8 +18,8 @@ export let auth = {
     *
     * */
 
-    postData  : function  (url = ``, data = {}) {
-      // Default options are marked with *
+    postData: function (url = ``, data = {}) {
+        // Default options are marked with *
         return fetch(url, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
@@ -48,19 +33,36 @@ export let auth = {
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data), // body data type must match "Content-Type" header
         })
-        .then(response => response.json())// parses JSON response into native Javascript objects
+            .then(response => response.json())// parses JSON response into native Javascript objects
     }
 };
 
-function register_save () {
+function register_save() {
     console.log("Hello, megerkeztunk.");
-    let register_name = document.getElementById("register_name").value;
-    let register_password = document.getElementById("register_password").value;
-        let data_from_auth = {'username' : register_name, 'password': register_password};
-        auth.postData(`/register`, data_from_auth)
-          .then(data => console.log(data)) // JSON-string from `response.json()` call
-            .then(data => auth.setLoginName(data['rdy_username']))
-          .catch(error => console.error(error));
+    let register_name = document.querySelector("#register_name").value;
+    let register_password = document.querySelector("#register_password").value;
+    let data_from_auth = {'username': register_name, 'password': register_password};
+    auth.postData(`/register`, data_from_auth)
+        .then(data => console.log(data)) // JSON-string from `response.json()` call
+        .then(function (data) {
+            sessionStorage.setItem("username", register_name);
+            document.querySelector('#registerModal').setAttribute('hidden', 'true');
+            auth.setLoginName(register_name);
+        })
+}
 
-
-    }
+function loginHandler() {
+    let username = document.querySelector("#loginName").value;
+    let password = document.querySelector("#loginPassword").value;
+    let data = {username, password};
+    console.log(data);
+    postData('/login', data)
+        .then(data => console.log(data))
+        .then(function (username) {
+            sessionStorage.setItem("username", username);
+            $(function () {
+                
+            })$('login_modal').modal('toggle');
+            auth.setLoginName(username);
+        })
+}

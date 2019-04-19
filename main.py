@@ -1,9 +1,10 @@
 from flask import Flask, render_template, jsonify, url_for, request
 from util import json_response
-
+from flask_bcrypt import Bcrypt
 import data_handler
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 
 @app.route("/")
@@ -34,18 +35,35 @@ def get_cards_for_board(board_id: int):
 
 
 @app.route("/register", methods=['POST', 'GET'])
+@json_response
 def auth_resp():
     data_json = request.get_json()
     print(data_json)
     data_username = data_json['username']
     data_password = data_json['password']
-    print("username: ", data_username, " password: ", data_password)
-    final_data = {'rdy_username': data_username, 'hashed_pw': data_password}
-    return jsonify(final_data)
+    hashed_password = bcrypt.generate_password_hash(data_password)
+    data_handler.add_user(data_username, hashed_password)
+    print(hashed_password, data_username)
+    return data_username
+
+
+@app.route('/login')
+def login_handler():
+    the_json = request.get_json()
+    print(the_json)
+    username = the_json['username']
+    password = the_json['password']
+    data_form_database = data_handler.check_user(username)
+    if data_form_database is not None:
+        password_valid = bcrypt.check_password_hash(data_form_database['hashed_password'],password)
+        if password_valid is True:
+            return username
+        else:
+            return
+
 
 def main():
     app.run(debug=True)
-
 
     with app.app_context():
         app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon/favicon.ico'))

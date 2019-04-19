@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ProMan</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" deferc></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" defer></script>
@@ -40,21 +40,22 @@
                 <a class="nav-link" href="#">Proman <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" id="register" data-toggle="modal" data-target="#registerModal">
-                <a class="nav-link" href="#"><span
-                        class="glyphicon glyphicon-user"></span>Registration</a>
+                <a class="nav-link" href="#">Registration</a>
             </li>
             <li class="nav-item" id="login" data-toggle="modal" data-target="#loginModal">
                 <a class="nav-link" href="#"><span
                         class="glyphicon glyphicon-log-in"></span> Login</a>
             </li>
-            <li class="nav-item" id="logout" data-toggle="modal" data-target="#logoutModal"><a class="nav-link" href="#"><span
-                        class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+            <li class="nav-item" id="logout" data-toggle="modal" data-target="#logoutModal"><a class="nav-link"
+                                                                                               href="#"><span
+                    class="glyphicon glyphicon-log-out"></span>Logout</a></li>
         </ul>
-
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button><p id="username" class="nav navbar-nav navbar-right navbar-text">Logged in as ...</p>
-        </form>
+        {##}
+        {#        <form class="form-inline my-2 my-lg-0">#}
+        {#            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">#}
+        {#            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+        {#            <p id="username" class="nav navbar-nav navbar-right navbar-text">Logged in as ...</p>#}
+        {#        </form>#}
     </div>
 </nav>
 
@@ -72,13 +73,13 @@
             </div>
             <div class="modal-body">
                 Name:
-                <input id="register_name" type="text"><br><br>
+                <input id="register_name" type="text"><br>
                 Password:
                 <input id="register_password" type="password">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="save_register" type="button" class="btn btn-primary">Save changes</button>
+                <button id="save_register" type="button" class="btn btn-primary">Register</button>
             </div>
         </div>
     </div>
@@ -97,11 +98,13 @@
             </div>
             <div class="modal-body">
                 Name:
-                <input id="loginName">
+                <input id="loginName"><br>
+                Password:
+                <input id="loginPassword">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="login_save_button">Save changes</button>
+                <button type="button" class="btn btn-primary" id="login_save_button">Login</button>
             </div>
         </div>
     </div>
