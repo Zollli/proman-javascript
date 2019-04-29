@@ -36,12 +36,20 @@ def get_cards_for_board(board_id: int):
 @app.route("/register", methods=['POST', 'GET'])
 def auth_resp():
     data_json = request.get_json()
-    print(data_json)
-    data_username = data_json['username']
-    data_password = data_json['password']
-    print("username: ", data_username, " password: ", data_password)
-    final_data = {'rdy_username': data_username, 'hashed_pw': data_password}
-    return jsonify(final_data)
+
+    if data_handler.check_username_in_db(data_json['username']):
+        return jsonify({'already_in_use': True, 'Successful': False})
+
+    if data_handler.execute_register(data_json['username'], data_json['password']):
+        # load into SESSION(?)
+        return jsonify({'already_in_use': False, 'Successful': True})
+
+@app.route("/login", methods=['POST', 'GET'])
+def login():
+    data_json = request.get_json()
+    if data_handler.execute_login(data_json['username'], data_json['password']):
+        return jsonify({'Successful': True})
+
 
 def main():
     app.run(debug=True)
