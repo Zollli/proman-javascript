@@ -39,3 +39,11 @@
   margin-top: .5vh;
   margin-right: .5vw;
 }
+.card{
+    position: relative;
+    background: #222;
+    color: #fff;
+    border-radius: var(--border-radius);
+    margin: 4px 0;
+    padding: 4px;
+}

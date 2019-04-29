@@ -66,6 +66,7 @@ def get_boards(cursor):
     cursor.execute("""
     SELECT * FROM boards
     """)
+
     result = cursor.fetchall()
     return result
 
@@ -82,9 +83,10 @@ def add_board(cursor, user_id, title):
 @connection.connection_handler
 def get_cards_sql(cursor, board_id):
     cursor.execute("""
-    SELECT title FROM cards
+    SELECT title,status_id,board_id FROM cards
     WHERE board_id = %(board_id)s
     """,
                    {'board_id': board_id})
+
     result = cursor.fetchall()
-    print(result)
+    return result
