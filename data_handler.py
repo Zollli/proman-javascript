@@ -29,3 +29,6 @@ def get_cards_for_board(board_id):
             card['status_id'] = get_card_status(card['status_id'])  # Set textual status for the card
             matching_cards.append(card)
     return matching_cards
+
+def add_board(label):
+    persistence.add_board('1', label)
