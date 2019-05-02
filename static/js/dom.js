@@ -38,7 +38,7 @@ export let dom = {
 
 
             dom._appendToElement(boardContainer, '<section class="board"><div class="board-header"><span class="board-title">' + board.title + ''+
-                '</span><button class="board-add">Add Card</button><button class="board-toggle" id=" '+ board.id +' "></button></div>' +
+                '</span><button class="card-add">Add Card</button><button class="board-toggle" id=" '+ board.id +' "></button></div>' +
                 '<div class="board-columns" id="content' + board.id +'"></div></section');
             let boardToggles = document.querySelectorAll(".board-toggle");
             for (let i=0;i<boardToggles.length;i++){
@@ -46,7 +46,6 @@ export let dom = {
                     dom.loadCards(board.id)
                 })
             }
-
             
             /*let theBoard = document.getElementById('' + board.id + '');
             theBoard.addEventListener('click', function () {
@@ -61,6 +60,7 @@ export let dom = {
             });*/
 
         })
+        dom.addCardListener()
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
@@ -73,21 +73,17 @@ export let dom = {
         let content = document.querySelector("#content1");
         for (let i=0;i<4;i++){
             dom._appendToElement(content,'<div class="board-column"><div class="board-column-title" >' + columnTitles[i] + '</div>' +
-                '<div class="board-column-content"><div class="card" ><div class="card-remove" ></div></div></div></div>')
-
-
-
-
-
-
-
-
-
-
-
-        }
-
+                '<div class="board-column-content"><div class="card" ><div class="card-remove" ></div></div></div></div>'
+            )}
 
     },
+    addCardListener: function () {
+        let addButtons = document.querySelectorAll('.card-add');
+        addButtons.forEach(function (addButton) {
+            addButton.addEventListener('click', function () {
+
+            })
+        })
+    }
     // here comes more features
 };
