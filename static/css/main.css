@@ -1,5 +1,5 @@
 #boards {
-    background-color: green;
+    background-color: lawngreen;
 }
 
 .collapsible {
@@ -7,12 +7,14 @@
   color: white;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
+  width: 98%;
   border: none;
   text-align: left;
   outline: none;
   font-size: 15px;
+  margin: 2%;
 }
+
 
 .active, .collapsible:hover {
   background-color: greenyellow;
@@ -24,4 +26,16 @@
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
+}
+
+#body {
+  position: relative;
+}
+
+#add-board-button {
+  position: absolute;
+  top:0;
+  right:0;
+  margin-top: .5vh;
+  margin-right: .5vw;
 }

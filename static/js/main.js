@@ -1,5 +1,5 @@
 import { dom } from "./dom.js";
-import {auth} from "./auth";
+import {auth} from "./auth.js";
 
 // This function is to initialize the application
 function init() {
@@ -8,7 +8,7 @@ function init() {
     // loads the boards to the screen
     dom.loadBoards();
 
-    auth._init();
+    //auth._init();
 }
 
 init();

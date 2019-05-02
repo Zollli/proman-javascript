@@ -1,4 +1,3 @@
-url = 'click_test';
 
 // test
 document.getElementById("login_save_button").addEventListener("click", login_save);
@@ -47,7 +46,7 @@ function login_save() {
 
     sessionStorage.setItem("username", username);
 
-    setLogin({"rdy_username": username});
+    //setLogin({"rdy_username": username});
 
 
 }
@@ -59,6 +58,10 @@ function setLogin(obj) {
    // close modal
     document.getElementById('register_close').click();
     document.getElementById('login_close').click();
+
+    document.getElementById("register").style.display = "none";
+    document.getElementById("login").style.display = "none";
+    document.getElementById("logout").style.display = "inline";
 
 }
 
@@ -73,8 +76,8 @@ function register_save() {
                 setLogin(data_from_auth);
 
             }
-            else if(response['already_in_use']){
-                console.log("Sajnos ez a név már foglalt");
+            else {
+                console.log(response['message']);
             }
         })
 
@@ -92,4 +95,9 @@ function register_save() {
 
 function logout() {
     sessionStorage.clear();
-    document.getElementById("username").innerText = "";}
+    document.getElementById("username").innerText = "";
+    document.getElementById("register").style.display = "inline";
+    document.getElementById("login").style.display = "inline";
+    document.getElementById("logout").style.display = "none";
+
+}
