@@ -34,10 +34,21 @@ export let dom = {
         let boardContainer = document.querySelector('#boards');
         boards.forEach(function (board) {
             //the content should be appended to the content+board id div
-            console.log(board);
-            dom._appendToElement(boardContainer, '<div class="board' + board.id + '"><button id="' + board.id + '" class="collapsible">' + board.title + '</button>\n' +
-                '<div class="content' + board.id + '"></div>');
-            let theBoard = document.getElementById('' + board.id + '');
+
+
+
+            dom._appendToElement(boardContainer, '<section class="board"><div class="board-header"><span class="board-title">' + board.title + ''+
+                '</span><button class="board-add">Add Card</button><button class="board-toggle" id=" '+ board.id +' "></button></div>' +
+                '<div class="board-columns" id="content' + board.id +'"></div></section');
+            let boardToggles = document.querySelectorAll(".board-toggle");
+            for (let i=0;i<boardToggles.length;i++){
+                boardToggles[i].addEventListener("click",function () {
+                    dom.loadCards(board.id)
+                })
+            }
+
+            
+            /*let theBoard = document.getElementById('' + board.id + '');
             theBoard.addEventListener('click', function () {
                 this.classList.toggle("active");
                 let content = this.nextElementSibling;
@@ -47,7 +58,7 @@ export let dom = {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
                 dom.loadCards(board.id)
-            });
+            });*/
 
         })
     },
@@ -58,24 +69,24 @@ export let dom = {
         })
     },
     showCards: function (cards) {
-        // shows the cards of a board
-        // it adds necessary event listeners also
-        let columns = ['new', 'in progress', 'testing', 'done'];
-        columns.forEach(function (column) {
-            let columnDiv = document.createElement('div');
-            columnDiv.setAttribute('class', 'column');
-            columnDiv.value = column;
-            cards.forEach(function (card) {
-            let cardDiv = document.createElement('div');
-            cardDiv.setAttribute('class', 'card');
-            let cardText = document.createTextNode(card.title);
-            console.log(card.title);
-            cardDiv.appendChild(cardText);
-            let test = document.querySelector('.content1');
-            test.appendChild(cardDiv)
+        let columnTitles = ["new","In progress","Testing","Done"];
+        let content = document.querySelector("#content1");
+        for (let i=0;i<4;i++){
+            dom._appendToElement(content,'<div class="board-column"><div class="board-column-title" >' + columnTitles[i] + '</div>' +
+                '<div class="board-column-content"><div class="card" ><div class="card-remove" ></div></div></div></div>')
 
-            });
-        });
+
+
+
+
+
+
+
+
+
+
+        }
+
 
     },
     // here comes more features

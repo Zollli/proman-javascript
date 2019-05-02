@@ -90,3 +90,9 @@ def get_cards_sql(cursor, board_id):
 
     result = cursor.fetchall()
     return result
+
+@connection.connection_handler
+def get_statuses_sql(cursor):
+    cursor.execute("SELECT id,title FROM statuses")
+    result = cursor.fetchall()
+    return result
