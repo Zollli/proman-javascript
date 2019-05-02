@@ -65,27 +65,21 @@ export let dom = {
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
         dataHandler.getCardsByBoardId(boardId, function (cards) {
-            dom.showCards(cards)
+            dom.showCards(cards,boardId)
         })
     },
-    showCards: function (cards) {
+    showCards: function (cards,boardID) {
         let columnTitles = ["new","In progress","Testing","Done"];
-        let content = document.querySelector("#content1");
+        let contentID = "#content" + boardID;
+        let content = document.querySelector(contentID);
         for (let i=0;i<4;i++){
             dom._appendToElement(content,'<div class="board-column"><div class="board-column-title" >' + columnTitles[i] + '</div>' +
                 '<div class="board-column-content"><div class="card" ><div class="card-remove" ></div></div></div></div>')
-
-
-
-
-
-
-
-
-
-
-
-        }
+            }
+        let cardDIV = document.querySelector(".card");
+        for (let card of cards){
+            dom._appendToElement(cardDIV,'<div class="card-title" >'+ card.title +'</div>')
+            }
 
 
     },
