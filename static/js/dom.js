@@ -54,7 +54,7 @@ export let dom = {
             for (let i=0;i<boardToggles.length;i++){
                 boardToggles[i].addEventListener("click",function () {
                     dom.loadCards(board.id)
-                })
+                });
             }
 
         })
@@ -66,7 +66,7 @@ export let dom = {
         })
     },
     showCards: function (cards,boardID) {
-        let columnTitles = ["new","In progress","Testing","Done"];
+        let columnTitles = ["Új Kísérletek","Folyamatban Lévő Kísérletek","Végső Tesztek","Bebizonyítva"];
         let contentID = "#content" + boardID;
         let content = document.querySelector(contentID);
         for (let i=0;i<4;i++){
@@ -75,11 +75,11 @@ export let dom = {
             }
         let cardDIV = document.querySelector(".card");
         for (let card of cards){
-            dom._appendToElement(cardDIV,'<div class="card-title" >'+ card.title +'<button class="done">Done</button></div>')
+            dom._appendToElement(cardDIV,'<div class="card-title" >'+ card.title +'<button class="done">Bebizonyítva</button></div>')
             }
         dragula([
           document.getElementById("10"),
-            document.getElementById("11"),
+          document.getElementById("11"),
           document.getElementById("12"),
           document.getElementById("13"),
           document.getElementById("20"),
