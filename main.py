@@ -80,6 +80,7 @@ def login_handler():
 def main():
     app.run(debug=True)
 
+
     with app.app_context():
         app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon/favicon.ico'))
 
