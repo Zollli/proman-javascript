@@ -38,7 +38,6 @@ def add_board(label):
 
 
 def get_cards_for_board(board_id):
-    persistence.clear_cache()
     all_cards = persistence.get_cards_sql(board_id)
     matching_cards = []
     for card in all_cards:

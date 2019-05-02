@@ -75,19 +75,7 @@ export let dom = {
             dom._appendToElement(content,'<div class="board-column"><div class="board-column-title" >' + columnTitles[i] + '</div>' +
                 '<div class="board-column-content"><div class="card" ><div class="card-remove" ></div></div></div></div>')
 
-
-
-
-
-
-
-
-
-
-
         }
-
-
     },
     // here comes more features
 };

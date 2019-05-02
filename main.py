@@ -32,6 +32,7 @@ def get_cards_for_board(board_id: int):
     """
     return data_handler.get_cards_for_board(board_id)
 
+
 # ez az elso fajta logika.
 @app.route("/register", methods=['POST', 'GET'])
 @json_response
@@ -46,13 +47,13 @@ def auth_resp():
     # load into SESSION(?)
     return {'Successful': True}
 
+
 # ez a masodik fajta logika. Melyik jobb? #TODO
 @app.route("/login", methods=['POST', 'GET'])
 @json_response
 def login():
     data_json = request.get_json()
     return data_handler.execute_login(data_json['username'], data_json['password'])
-
 
 
 @app.route('/login_p', methods=['POST', 'GET'])
@@ -79,7 +80,6 @@ def login_handler():
 
 def main():
     app.run(debug=True)
-
 
     with app.app_context():
         app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon/favicon.ico'))

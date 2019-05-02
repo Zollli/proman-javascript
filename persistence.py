@@ -1,5 +1,7 @@
 # import csv
 import connection
+
+
 #
 # STATUSES_FILE = './data/statuses.csv'
 # BOARDS_FILE = './data/boards.csv'
@@ -105,10 +107,7 @@ def get_user(cursor, username):
     SELECT name, hashed_password FROM users WHERE name = %(name)s
     ''', {'name': username})
     return cursor.fetchall()
-                   {'board_id': board_id})
 
-    result = cursor.fetchall()
-    return result
 
 @connection.connection_handler
 def get_statuses_sql(cursor):
