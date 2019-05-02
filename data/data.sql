@@ -1,7 +1,7 @@
-drop table if exists users;
-drop table if exists boards;
-drop table if exists statuses;
 drop table if exists cards;
+drop table if exists statuses;
+drop table if exists boards;
+drop table if exists users;
 
 create table users (
 	id SERIAL not null ,
