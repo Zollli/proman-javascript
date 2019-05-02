@@ -74,13 +74,25 @@ export let dom = {
         let content = document.querySelector(contentID);
         for (let i=0;i<4;i++){
             dom._appendToElement(content,'<div class="board-column"><div class="board-column-title" >' + columnTitles[i] + '</div>' +
-                '<div class="board-column-content"><div class="card" ><div class="card-remove" ></div></div></div></div>')
+                '<div class="board-column-content"><div class="card" id="'+ boardID + i +'" ><div class="card-remove" ></div></div></div></div>')
             }
         let cardDIV = document.querySelector(".card");
         for (let card of cards){
             dom._appendToElement(cardDIV,'<div class="card-title" >'+ card.title +'</div>')
             }
+        dragula([
+          document.getElementById("10"),
+            document.getElementById("11"),
+          document.getElementById("12"),
+          document.getElementById("13"),
+          document.getElementById("20"),
+          document.getElementById("21"),
+          document.getElementById("22"),
+          document.getElementById("23")
 
+          //document.getElementById("2"),
+          //document.getElementById("3")
+            ]);
 
     },
     // here comes more features
