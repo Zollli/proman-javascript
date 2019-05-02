@@ -1,7 +1,8 @@
-drop table if exists users;
-drop table if exists boards;
-drop table if exists statuses;
 drop table if exists cards;
+drop table if exists statuses;
+drop table if exists boards;
+drop table if exists users;
+
 
 create table users (
 	id SERIAL not null ,
@@ -33,22 +34,15 @@ create table cards(
 );
 
 insert into users(name, hashed_password) VALUES('proman','proman');
-insert into boards(user_id, title) VALUES (1,'Sprint Plan 5th TW week');
-insert into boards(user_id, title) VALUES (1,'Future');
-insert into statuses(title) values ('new');
-insert into statuses(title) values ('in progress');
-insert into statuses(title) values ('testing');
-insert into statuses(title) values ('done');
-insert into cards(board_id, title, status_id) VALUES (1,'Create a development environment BV:00',4);
-insert into cards(board_id, title, status_id) VALUES (1,'List page BV:1000',4);
-insert into cards(board_id, title, status_id) VALUES (1,'Create public board BV:400',4);
-insert into cards(board_id, title, status_id) VALUES (1,'Static columns BV:300',4);
-insert into cards(board_id, title, status_id) VALUES (1,'Change status BV:600',4);
-insert into cards(board_id, title, status_id) VALUES (1,'User registration BV:700',4);
-insert into cards(board_id, title, status_id) VALUES (1,'User login BV:700',4);
-insert into cards(board_id, title, status_id) VALUES (1,'User logout BV:700',4);
-insert into cards(board_id, title, status_id) VALUES (2,'Delete cards',1);
-insert into cards(board_id, title, status_id) VALUES (2,'Delete boards',1);
-insert into cards(board_id, title, status_id) VALUES (2,'Add card',1);
-insert into cards(board_id, title, status_id) VALUES (2,'Add board',1);
+insert into boards(user_id, title) VALUES (1,'A laposföld bebizonyítása');
+insert into statuses(title) values ('Új Kísérletek');
+insert into statuses(title) values ('Folyamatban Lévő Kísérletek');
+insert into statuses(title) values ('Végső Tesztek');
+insert into statuses(title) values ('Bebizonysodott');
+insert into cards(board_id, title, status_id) VALUES (1,'Házi építésű rakétával kilőni kutatókat, hogy bebizonyítást nyerjen, a föld lapos.  BV:1500' ,4);
+insert into cards(board_id, title, status_id) VALUES (1,'Érzékszerveinkkel való megfigyelés(Nem látni,hogy görbül).  BV:1000',4);
+insert into cards(board_id, title, status_id) VALUES (1,'A Nap kering a Föld körül.  BV:800',4);
+insert into cards(board_id, title, status_id) VALUES (1,'Az Old Bedford River csatornán hajózni, ameddig az árbóc el nem tünik a horizonton.  BV:1500',4);
+insert into cards(board_id, title, status_id) VALUES (1,'Cipő kopás elemzés',4);
+
 

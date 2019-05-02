@@ -32,6 +32,16 @@ export let dom = {
 
 
         let boardContainer = document.querySelector('#boards');
+        let modal = document.createElement("div");
+        modal.setAttribute("id","clap");
+        modal.setAttribute("class", "clap-modal");
+        let img = document.createElement("img");
+        img.setAttribute("src","https://media.giphy.com/media/7rj2ZgttvgomY/giphy.gif");
+        img.setAttribute("alt","clap");
+        modal.style.display = "none";
+        modal.appendChild(img);
+        boardContainer.appendChild(modal);
+
         boards.forEach(function (board) {
             //the content should be appended to the content+board id div
 
@@ -46,19 +56,6 @@ export let dom = {
                     dom.loadCards(board.id)
                 })
             }
-
-            
-            /*let theBoard = document.getElementById('' + board.id + '');
-            theBoard.addEventListener('click', function () {
-                this.classList.toggle("active");
-                let content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-                dom.loadCards(board.id)
-            });*/
 
         })
     },
@@ -78,10 +75,24 @@ export let dom = {
             }
         let cardDIV = document.querySelector(".card");
         for (let card of cards){
-            dom._appendToElement(cardDIV,'<div class="card-title" >'+ card.title +'</div>')
+            dom._appendToElement(cardDIV,'<div class="card-title" >'+ card.title +'<button class="done">Done</button></div>')
             }
 
+    let doneButtons = document.querySelectorAll(".done");
+    for (let i=0;i<doneButtons.length;i++){
+        doneButtons[i].addEventListener("click",function () {
+            let modal = document.querySelector("#clap");
+            modal.style.display ='block';
+            setTimeout(function(){
+               modal.style.display ='none'
+            },3000);
 
-    },
-    // here comes more features
+
+
+
+        })
+    }
+    
+    
+    },// here comes more features
 };
