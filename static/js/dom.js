@@ -38,7 +38,7 @@ export let dom = {
 
 
             dom._appendToElement(boardContainer, '<section class="board"><div class="board-header"><span class="board-title">' + board.title + ''+
-                '</span><button class="board-add">Add Card</button><button class="board-toggle" id=" '+ board.id +' "></button></div>' +
+                '</span><button class="board-add">Add Card</button><button class="board-toggle" id="'+ board.id +'">Open</button></div>' +
                 '<div class="board-columns" id="content' + board.id +'"></div></section');
             let boardToggles = document.querySelectorAll(".board-toggle");
             for (let i=0;i<boardToggles.length;i++){
