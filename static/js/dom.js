@@ -48,7 +48,7 @@ export let dom = {
 
 
             dom._appendToElement(boardContainer, '<section class="board"><div class="board-header"><span class="board-title">' + board.title + ''+
-                '</span><button class="board-add">Add Card</button><button class="board-toggle" id=" '+ board.id +' "></button></div>' +
+                '</span><button class="board-add">Add Card</button><button class="board-toggle" id="'+ board.id +'">Open</button></div>' +
                 '<div class="board-columns" id="content' + board.id +'"></div></section');
             let boardToggles = document.querySelectorAll(".board-toggle");
             for (let i=0;i<boardToggles.length;i++){
@@ -71,12 +71,26 @@ export let dom = {
         let content = document.querySelector(contentID);
         for (let i=0;i<4;i++){
             dom._appendToElement(content,'<div class="board-column"><div class="board-column-title" >' + columnTitles[i] + '</div>' +
-                '<div class="board-column-content"><div class="card" ><div class="card-remove" ></div></div></div></div>')
+                '<div class="board-column-content"><div class="card" id="'+ boardID + i +'" ><div class="card-remove" ></div></div></div></div>')
             }
         let cardDIV = document.querySelector(".card");
         for (let card of cards){
             dom._appendToElement(cardDIV,'<div class="card-title" >'+ card.title +'<button class="done">Done</button></div>')
             }
+        dragula([
+          document.getElementById("10"),
+            document.getElementById("11"),
+          document.getElementById("12"),
+          document.getElementById("13"),
+          document.getElementById("20"),
+          document.getElementById("21"),
+          document.getElementById("22"),
+          document.getElementById("23")
+
+          //document.getElementById("2"),
+          //document.getElementById("3")
+            ]);
+
 
     let doneButtons = document.querySelectorAll(".done");
     for (let i=0;i<doneButtons.length;i++){
@@ -92,7 +106,7 @@ export let dom = {
 
         })
     }
-    
-    
+
+
     },// here comes more features
 };

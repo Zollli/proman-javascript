@@ -4,8 +4,12 @@ import { dom } from "./dom.js";
 function init() {
     // init data
     dom.init();
+
     // loads the boards to the screen
     dom.loadBoards();
+    console.log(document.getElementById("10"));
+
+    console.log("Hello, lefutottam!");
 }
 
 init();
