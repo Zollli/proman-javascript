@@ -54,8 +54,8 @@ export let dataHandler = {
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
 
-        // add new board
-        const addBoard = document.getElementsByClassName('add-board');
+        / add new board
+        const addBoard = document.getElementsByClassName('boards');
         addBoard.addEventListener('click', function () {
 
         // create elements
@@ -64,10 +64,15 @@ export let dataHandler = {
         var newDiv = document.createElement('div') ;
 
         // add classes and ID-s
-
+        var countId = 3;
         newButton.classList.add('collapsible');
+        newButton.setAttribute('id', countId);
+        countId++;
         newDiv.classList.add('content');
 
+        //add new board
+        var text = document.createTextNode('New Board');
+        newButton.appendChild(text);
 
         // append elements
         newBoard.appendChild(newButton);
